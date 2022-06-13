@@ -46,6 +46,7 @@ class NotificationService {
   ///
   /// Only for iOS (not implemented on macOS, android, web)
   Future<void> startHeadlessService() async {
+    return;
     return _callWithHandle(
       'startHeadlessService',
       _backgroundCallbackDispatcher,
