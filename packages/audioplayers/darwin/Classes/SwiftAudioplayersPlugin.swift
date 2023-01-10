@@ -318,12 +318,12 @@ public class SwiftAudioplayersPlugin: NSObject, FlutterPlugin {
         // When using AVAudioSessionCategoryPlayback, by default, this implies that your app’s audio is nonmixable—activating your session
         // will interrupt any other audio sessions which are also nonmixable. AVAudioSessionCategoryPlayback should not be used with
         // AVAudioSessionCategoryOptionMixWithOthers option. If so, it prevents infoCenter from working correctly.
-//        let category = (playingRoute == "earpiece" || recordingActive) ? AVAudioSession.Category.playAndRecord : (
-//            isNotification ? AVAudioSession.Category.ambient : AVAudioSession.Category.playback
-//        )
-//        let options = isNotification || duckAudio ? AVAudioSession.CategoryOptions.mixWithOthers : []
+        let category = (playingRoute == "earpiece" || recordingActive) ? AVAudioSession.Category.playAndRecord : (
+            isNotification ? AVAudioSession.Category.ambient : AVAudioSession.Category.playback
+        )
+        let options = isNotification || duckAudio ? AVAudioSession.CategoryOptions.mixWithOthers : []
         
-//        configureAudioSession(category: category, options: options)
+        configureAudioSession(category: category, options: options)
         if isNotification {
             UIApplication.shared.beginReceivingRemoteControlEvents()
         }
@@ -333,9 +333,9 @@ public class SwiftAudioplayersPlugin: NSObject, FlutterPlugin {
     func maybeDeactivateAudioSession() {
         let hasPlaying = players.values.contains { player in player.isPlaying }
         if !hasPlaying {
-//            #if os(iOS)
-//            configureAudioSession(active: false)
-//            #endif
+            #if os(iOS)
+            configureAudioSession(active: false)
+            #endif
         }
     }
     
